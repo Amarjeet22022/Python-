@@ -3,6 +3,7 @@ import yt_dlp
 
 app = Flask(__name__)
 
+# This HTML template creates the input box interface directly from Python
 HTML_TEMPLATE = """
 <!DOCTYPE html>
 <html>
@@ -34,6 +35,43 @@ HTML_TEMPLATE = """
         {% if download_url %}
             <p style="color:green;">Success! Click below to open/download:</p>
             <a class="success" href="{{ download_url }}" target="_blank">👉 Download / Play Video 👈</a>
+        {% elif error %}
+            <p class="error">Error: {{ error }}</p>
+        {% endif %}
+    </div>
+</div>
+</body>
+</html>
+"""
+
+@app.route('/', methods=['GET', 'POST'])
+def home():
+    url = ""
+    download_url = None
+    error = None
+
+    if request.method == 'POST':
+        url = request.form.get('url')
+        if url:
+            # Configurations to bypass YouTube's server-side blocks
+            ydl_opts = {
+                'format': 'best',
+                'quiet': True,
+                'cookiefile': 'cookies.txt'  # Reads the uploaded authentication cookies
+            }
+            try:
+                with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+                    info = ydl.extract_info(url, download=False)
+                    download_url = info.get('url')
+            except Exception as e:
+                error = str(e)
+        else:
+            error = "Please enter a URL."
+
+    return render_template_string(HTML_TEMPLATE, url=url, download_url=download_url, error=error)
+
+if __name__ == '__main__':
+    app.run()
         {% elif error %}
             <p class="error">Error: {{ error }}</p>
         {% endif %}
