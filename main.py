@@ -3,7 +3,6 @@ import yt_dlp
 
 app = Flask(__name__)
 
-# This HTML template creates the input box interface directly from Python
 HTML_TEMPLATE = """
 <!DOCTYPE html>
 <html>
@@ -54,13 +53,15 @@ def home():
         url = request.form.get('url')
         if url:
             ydl_opts = {
-                'format': 'best', # Pulls highest quality pre-muxed video stream
-                'quiet': True
+                'format': 'best',
+                'quiet': True,
+                # Force yt-dlp to bypass bot detection using iOS/Android clients
+                'extractor_args': {'youtube': {'player_client': ['ios', 'android']}}
             }
             try:
                 with yt_dlp.YoutubeDL(ydl_opts) as ydl:
                     info = ydl.extract_info(url, download=False)
-                    download_url = info.get('url') # The direct googlevideo.com link
+                    download_url = info.get('url')
             except Exception as e:
                 error = str(e)
         else:
@@ -70,3 +71,4 @@ def home():
 
 if __name__ == '__main__':
     app.run()
+    
