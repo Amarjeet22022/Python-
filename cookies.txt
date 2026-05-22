@@ -1,7 +1,3 @@
-# Netscape HTTP Cookie File
-# https://curl.haxx.se/rfc/cookie_spec.html
-# This is a generated file! Do not edit.
-
 .youtube.com	TRUE	/	TRUE	1795002293	__Secure-YNID	18.YT=xfgBtbT57PAySN2YhlI2e22ZeB3XWf1HFRrfIiH42_IPLXupUXFao9juABzjYe7Oa2g1EFEH4RrKcG4BQW7qcrmnWCfVRfk6WoHExl5dGRTF4FhGWqpLmVwcDtfzMl2wvs3DbW9ioyHAmG9z2Zqa6DbJd0M4p1nShw7HL36aOwZO7GdopH-qbI0Cfi6w6rqQF5nOFH6Msr9-k4yUQX8T0V8Pi3jFgSRnsEGVybCvyspSdj__jmfnCLaWJ3wKx1MYzo8sFzriJH6dkgQHAO1J_3J8UYsn5Cya-cKuzCW8VUcoExYTXOTWRCVoMXZWhtiGS1U8_r3O-dzQk9cZQDzh7g
 .youtube.com	TRUE	/	TRUE	1779452094	GPS	1
 .youtube.com	TRUE	/	TRUE	0	YSC	WnJh2Bs5lKk
